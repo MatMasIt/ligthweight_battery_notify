@@ -258,8 +258,13 @@ func (m *Monitor) check() error {
 	if newLevel != m.currentLevel && newLevel != "normal" {
 		log.Printf("Battery level changed to: %s (%d%%)", newLevel, capacity)
 
+		var message string
 		title := level.Title
-		message := fmt.Sprintf(level.Message, capacity)
+		if strings.Contains(level.Message, "%d") {
+			message = fmt.Sprintf(level.Message, capacity)
+		} else {
+			message = level.Message
+		}
 
 		// Send notification - it will replace previous one if ID exists
 		id, err := m.notifier.Send(title, message, "critical", level.Icon)
