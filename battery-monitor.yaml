@@ -1,0 +1,16 @@
+app_name: "Battery Monitor"
+poll_interval: 5  # Check battery every N seconds
+
+low_battery:
+  threshold: 30  # Percentage at which to trigger low battery warning
+  title: "Low Battery"
+  icon: "battery-low"
+  sound: audio/bat-low.ogg
+  message: "Battery is low at %d%%. Please connect charger."
+
+critical_battery:
+  threshold: 10  # Percentage at which to trigger critical battery warning
+  title: "Critical Battery!"
+  icon: "battery-empty"
+  sound: audio/bat-critical.ogg
+  message: "Battery is critically low at %d%%! Connect charger immediately!"
